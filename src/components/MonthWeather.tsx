@@ -16,7 +16,10 @@ function MonthlyWeather({ index, item, useMonth }: MonthlyWeatherProps) {
       }
       style={{ width: "13rem" }}
     >
-      <li key={index} className="list-group border m-1 p-1">
+      <li
+        key={index}
+        className={useMonth ? "list-group" : "list-group border m-1 p-1"}
+      >
         <h6 className="card-subtitle mb-2 text-body-secondary">
           <strong>{item.month}:</strong>
         </h6>
