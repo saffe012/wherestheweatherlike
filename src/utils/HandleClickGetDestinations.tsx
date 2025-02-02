@@ -2,6 +2,7 @@ import { SetStateAction } from "react";
 import DestinationWeather from "../stores/DestinationWeather";
 import MonthData from "../types/MonthData";
 import DestinationWeatherData from "../types/DestinationWeatherData";
+import DestinationData from "../types/DestinationData";
 
 export const HandleClickGetDestinations = (
   rainOk: string,
@@ -15,11 +16,7 @@ export const HandleClickGetDestinations = (
     description: string;
   }[]
 > => {
-  let destinationsList: {
-    destination: string;
-    data: MonthData;
-    description: string;
-  }[] = [];
+  let destinationsList: DestinationData[] = [];
 
   function checkRainLevel(numberOfRainDays: number) {
     if (rainOk === "Doesn't Matter") {

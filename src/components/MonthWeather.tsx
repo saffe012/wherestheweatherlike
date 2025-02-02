@@ -11,10 +11,9 @@ function MonthlyWeather({ index, item, useMonth }: MonthlyWeatherProps) {
     <div
       className={
         useMonth
-          ? "align-items-center text-start card m-1 py-3 px-1"
+          ? "align-items-center text-start card m-1 py-3 px-1 monthly-weather-card"
           : "text-start"
       }
-      style={{ width: "13rem" }}
     >
       <li
         key={index}

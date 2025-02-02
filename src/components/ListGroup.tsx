@@ -1,22 +1,18 @@
 import ListItem from "./ListItem";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useState, useEffect } from "react";
-import MonthData from "../types/MonthData";
+import DestinationData from "../types/DestinationData";
 
 interface ListGroupProps {
-  destinationsList: {
-    destination: string;
-    data: MonthData;
-    description: string;
-  }[];
+  destinationsList: DestinationData[];
   month: string;
 }
 
 function ListGroup({ month, destinationsList }: ListGroupProps) {
   const [hasMore, setHasMore] = useState(true);
-  const [items, setItems] = useState<
-    { destination: string; data: MonthData; description: string }[]
-  >(destinationsList.slice(0, 10));
+  const [items, setItems] = useState<DestinationData[]>(
+    destinationsList.slice(0, 10)
+  );
 
   useEffect(() => {
     setItems(destinationsList.slice(0, 10)); // Reset state when someProp changes

@@ -3,10 +3,13 @@
   background-image: url("./assets/IMG_2417.jpeg");
   background-size: cover;
   background-position: center;
-  min-width: calc(100vw - 16px);
   padding-bottom: 20px;
   overflow-x: hidden;
   overflow-y: hidden;
+}
+
+.monthly-weather-card {
+  width: 13rem;
 }
 
 .photo-font {
