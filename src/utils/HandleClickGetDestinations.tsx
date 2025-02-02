@@ -21,7 +21,7 @@ export const HandleClickGetDestinations = (
     description: string;
   }[] = [];
 
-  function checkRainLevel(numberOfRainDays: number, destination: string) {
+  function checkRainLevel(numberOfRainDays: number) {
     if (rainOk === "Doesn't Matter") {
       return true;
     } else if (rainOk === "Less Rain") {
@@ -56,10 +56,7 @@ export const HandleClickGetDestinations = (
             minimumHighTemp &&
           DestinationWeather[destination].weather[monthfor].high_temp <=
             maximumHighTemp &&
-          checkRainLevel(
-            DestinationWeather[destination].weather[monthfor].rain,
-            destination
-          )
+          checkRainLevel(DestinationWeather[destination].weather[monthfor].rain)
         ) {
           months[monthfor] = DestinationWeather[destination].weather[monthfor];
         }
@@ -73,10 +70,7 @@ export const HandleClickGetDestinations = (
           minimumHighTemp &&
         DestinationWeather[destination].weather[month].high_temp <=
           maximumHighTemp &&
-        checkRainLevel(
-          DestinationWeather[destination].weather[month].rain,
-          destination
-        )
+        checkRainLevel(DestinationWeather[destination].weather[month].rain)
       ) {
         let months: MonthData = {};
         months[month] = DestinationWeather[destination].weather[month];
