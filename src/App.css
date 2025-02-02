@@ -1,0 +1,117 @@
+.background-container {
+  text-align: center;
+  background-image: url("./assets/IMG_2417.jpeg");
+  background-size: cover;
+  background-position: center;
+  min-width: calc(100vw - 16px);
+  padding-bottom: 20px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+.photo-font {
+  color: white;
+}
+
+.oswald-header {
+  font-family: "Oswald", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.destination-description {
+  font-size: large;
+}
+
+.p-card-text {
+  margin: 0;
+  padding: 0;
+}
+
+hr.divider {
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  border-width: 1px;
+}
+
+.destinations-container {
+  display: flex;
+  justify-content: center;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+}
+
+.content-div {
+  margin-left: 1em;
+  position: relative;
+}
+
+@media (max-width: 2000px) {
+  .site-description {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 1750px) {
+  .site-description {
+    font-size: 28px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .site-description {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .site-description {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-description {
+    font-size: 18px;
+    margin-left: 5px !important;
+    margin-right: 5px !important;
+  }
+  .option-choice {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .site-description {
+    font-size: 16px;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+    margin-top: 5px !important;
+  }
+
+  .avg-ht-label {
+    margin-bottom: 16px;
+  }
+
+  .dropdown-button {
+    font-size: 8px !important;
+  }
+
+  .copyright {
+    font-size: 12px;
+  }
+
+  .option-choice {
+    font-size: 16px;
+  }
+
+  .dropdown-menu {
+    height: 150px;
+    overflow-y: scroll;
+  }
+}
