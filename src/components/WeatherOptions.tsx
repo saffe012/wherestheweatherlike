@@ -1,22 +1,18 @@
 import WeatherOption from "./WeatherOption";
 import MultiRangeSlider from "./MultiRangeSlider/MultiRangeSlider";
-import { useState } from "react";
+import { SetStateAction, useContext, useState } from "react";
 import "../App.css";
+import { AppContext } from "../App";
+import {
+  DOESNT_MATTER,
+  LESS_RAIN,
+  SOME_RAIN_IS_OK,
+} from "../stores/GlobalConstants";
 
-interface WeatherOptionsProps {
-  handleMonthChange: (event: any) => void;
-  handleHighTempRangeChange: (event: any) => void;
-  handleRainOkChange: (event: any) => void;
-}
-
-function WeatherOptions({
-  handleMonthChange,
-  handleHighTempRangeChange,
-  handleRainOkChange,
-}: WeatherOptionsProps) {
-  const [month] = useState("Doesn't Matter");
+function WeatherOptions() {
+  const [month] = useState(DOESNT_MATTER);
   const months = [
-    "Doesn't Matter",
+    DOESNT_MATTER,
     "January",
     "February",
     "March",
@@ -30,9 +26,34 @@ function WeatherOptions({
     "November",
     "December",
   ];
+  const context = useContext(AppContext);
 
-  const [rainOk] = useState("Doesn't Matter");
-  const rainOks = ["Doesn't Matter", "Less Rain", "Some Rain is Ok"];
+  //declare event handlers
+  const handleMonthChange = (event: {
+    target: () => SetStateAction<string>;
+  }) => {
+    context.month = event.toString();
+  };
+
+  const handleRainOkChange = (event: {
+    target: () => SetStateAction<string>;
+  }) => {
+    context.rainOk = event.toString();
+  };
+
+  const handleHighTempRangeChange = ({
+    min,
+    max,
+  }: {
+    min: number;
+    max: number;
+  }) => {
+    context.minimumHighTemp = min;
+    context.maximumHighTemp = max;
+  };
+
+  const [rainOk] = useState(DOESNT_MATTER);
+  const rainOks = [DOESNT_MATTER, LESS_RAIN, SOME_RAIN_IS_OK];
   let mtClass = window.innerWidth > 500 ? "mt-4" : "mt-1";
   return (
     <>

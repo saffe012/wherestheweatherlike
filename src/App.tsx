@@ -1,70 +1,31 @@
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import { HandleClickGetDestinations } from "./utils/HandleClickGetDestinations";
 import ListContainer from "./components/ListContainer";
 import BackgroundContainer from "./components/BackgroundContainer";
-import DestinationData from "./types/DestinationData";
+import React from "react";
+import { DOESNT_MATTER } from "./stores/GlobalConstants";
 
-let month = "Doesn't Matter";
-let minimumHighTemp = -10;
-let maximumHighTemp = 110;
-let rainOk = "Doesn't Matter";
+// Creating a context object
+export const AppContext = React.createContext({
+  month: DOESNT_MATTER,
+  minimumHighTemp: -10,
+  maximumHighTemp: 110,
+  rainOk: DOESNT_MATTER,
+  count: 0,
+  appDestinationsList: [] as {
+    destination: string;
+    data: { [key: string]: { high_temp: number; rain: number } };
+    description: string;
+  }[],
+});
 
 function App() {
-  //declare state variables
-  const [count, setCount] = useState(0);
-  const [appDestinationsList, setAppDestinationsList] = useState<
-    DestinationData[]
-  >([]);
-
-  //declare event handlers
-  const handleMonthChange = (event: {
-    target: () => SetStateAction<string>;
-  }) => {
-    month = event.toString();
-  };
-  const handleHighTempRangeChange = ({
-    min,
-    max,
-  }: {
-    min: number;
-    max: number;
-  }) => {
-    minimumHighTemp = min;
-    maximumHighTemp = max;
-  };
-  const handleRainOkChange = (event: {
-    target: () => SetStateAction<string>;
-  }) => {
-    rainOk = event.toString();
-  };
-  const handleClick = () => {
-    setCount(count + 1);
-    setAppDestinationsList(
-      HandleClickGetDestinations(
-        (rainOk = rainOk),
-        (month = month),
-        (minimumHighTemp = minimumHighTemp),
-        (maximumHighTemp = maximumHighTemp)
-      )
-    );
-  };
+  const countState = useState(0);
 
   return (
     <>
-      <BackgroundContainer
-        appDestinationsList={appDestinationsList}
-        count={count}
-        handleMonthChange={handleMonthChange}
-        handleRainOkChange={handleRainOkChange}
-        handleHighTempRangeChange={handleHighTempRangeChange}
-        handleClick={handleClick}
-      />
-      <ListContainer
-        appDestinationsList={appDestinationsList}
-        month={month}
-        count={count}
-      />
+      <BackgroundContainer countState={countState} />
+      <ListContainer />
     </>
   );
 }

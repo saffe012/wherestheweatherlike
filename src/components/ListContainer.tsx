@@ -1,32 +1,24 @@
 import ListGroup from "./ListGroup";
 import Copyright from "./Copyright";
-import DestinationData from "../types/DestinationData";
+import { AppContext } from "../App";
+import { useContext } from "react";
 
-interface ListContainerProps {
-  appDestinationsList: DestinationData[];
-  month: string;
-  count: number;
-}
-
-const ListContainer = ({
-  appDestinationsList,
-  month,
-  count,
-}: ListContainerProps) => {
+const ListContainer = () => {
+  const count = useContext(AppContext).count;
+  const appDestinationsList = useContext(AppContext).appDestinationsList;
   return (
-    <div>
-      <div className="form-group">
-        {count > 0 && (
-          <div>
-            <ListGroup destinationsList={appDestinationsList} month={month} />
+    <>
+      {appDestinationsList.length > 0 && (
+        <div className="p-card-text">
+          <div className="form-group">
+            <div>
+              <ListGroup destinationsList={appDestinationsList} />
+            </div>
           </div>
-        )}
-      </div>
-      <Copyright
-        show={appDestinationsList.length > 0}
-        inBackgroundContainer={false}
-      />
-    </div>
+          <Copyright show={count > 0} inBackgroundContainer={false} />
+        </div>
+      )}
+    </>
   );
 };
 

@@ -1,29 +1,31 @@
-import { SetStateAction } from "react";
 import DestinationWeather from "../stores/DestinationWeather";
 import MonthData from "../types/MonthData";
 import DestinationWeatherData from "../types/DestinationWeatherData";
 import DestinationData from "../types/DestinationData";
+import {
+  DOESNT_MATTER,
+  LESS_RAIN,
+  SOME_RAIN_IS_OK,
+} from "../stores/GlobalConstants";
 
 export const HandleClickGetDestinations = (
   rainOk: string,
   month: string,
   minimumHighTemp: number,
   maximumHighTemp: number
-): SetStateAction<
-  {
-    destination: string;
-    data: { [key: string]: { high_temp: number; rain: number } };
-    description: string;
-  }[]
-> => {
+): {
+  destination: string;
+  data: { [key: string]: { high_temp: number; rain: number } };
+  description: string;
+}[] => {
   let destinationsList: DestinationData[] = [];
 
   function checkRainLevel(numberOfRainDays: number) {
-    if (rainOk === "Doesn't Matter") {
+    if (rainOk === DOESNT_MATTER) {
       return true;
-    } else if (rainOk === "Less Rain") {
+    } else if (rainOk === LESS_RAIN) {
       return numberOfRainDays < 10;
-    } else if (rainOk === "Some Rain is Ok") {
+    } else if (rainOk === SOME_RAIN_IS_OK) {
       return numberOfRainDays < 15;
     } else {
       return numberOfRainDays >= 15;
@@ -41,9 +43,8 @@ export const HandleClickGetDestinations = (
   }
 
   const shuffledList = shuffle(Object.keys(DestinationWeather));
-
   for (const destination of shuffledList) {
-    if (month === "Doesn't Matter") {
+    if (month === DOESNT_MATTER) {
       let months: MonthData = {};
       for (const monthfor of Object.keys(
         DestinationWeather[destination].weather

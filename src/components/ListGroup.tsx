@@ -1,14 +1,15 @@
 import ListItem from "./ListItem";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import DestinationData from "../types/DestinationData";
+import { AppContext } from "../App";
+import { DOESNT_MATTER } from "../stores/GlobalConstants";
 
 interface ListGroupProps {
   destinationsList: DestinationData[];
-  month: string;
 }
 
-function ListGroup({ month, destinationsList }: ListGroupProps) {
+function ListGroup({ destinationsList }: ListGroupProps) {
   const [hasMore, setHasMore] = useState(true);
   const [items, setItems] = useState<DestinationData[]>(
     destinationsList.slice(0, 10)
@@ -25,18 +26,20 @@ function ListGroup({ month, destinationsList }: ListGroupProps) {
     setHasMore(items.length < destinationsList.length);
   }
 
-  return destinationsList.length === 0 ? (
-    <div className="mt-3 text-center">
-      <h3>No destinations found</h3>
-    </div>
-  ) : (
+  const month = useContext(AppContext).month;
+  return (
     <>
+      {destinationsList.length === 0 && (
+        <div className="mt-3 text-center">
+          <h5>No destinations found</h5>
+        </div>
+      )}
       {
         <div className="mt-3 text-center">
           <h5>Showing {destinationsList.length} destinations.</h5>
         </div>
       }
-      {month != "Doesn't Matter" && (
+      {month != DOESNT_MATTER && (
         <div className="mt-3 destinations-container">
           <h3>Destinations for {month}</h3>
         </div>
@@ -55,7 +58,7 @@ function ListGroup({ month, destinationsList }: ListGroupProps) {
               key={index}
               index={index}
               item={item}
-              useMonth={month != "Doesn't Matter"}
+              useMonth={month != DOESNT_MATTER}
             />
           ))}
         </InfiniteScroll>

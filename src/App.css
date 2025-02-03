@@ -8,12 +8,22 @@
   overflow-y: hidden;
 }
 
+.no-destinations {
+  overflow-x: hidden;
+  overflow-y: hidden;
+  width: 90vw;
+}
+
 .monthly-weather-card {
   width: 13rem;
 }
 
 .photo-font {
   color: white;
+}
+
+.no-points-message {
+  color: red;
 }
 
 .oswald-header {
