@@ -10,16 +10,20 @@ interface ListGroupProps {
 }
 
 function ListGroup({ destinationsList }: ListGroupProps) {
+  // State to track if there are more items to load
   const [hasMore, setHasMore] = useState(true);
+  // State to store the currently displayed items
   const [items, setItems] = useState<DestinationData[]>(
     destinationsList.slice(0, 10)
   );
 
+  // Effect to reset items and hasMore state when destinationsList changes
   useEffect(() => {
-    setItems(destinationsList.slice(0, 10)); // Reset state when someProp changes
+    setItems(destinationsList.slice(0, 10));
     setHasMore(true);
   }, [destinationsList]);
 
+  // Function to fetch more data when scrolling
   function fetchData() {
     let length = items.length;
     setItems(destinationsList.slice(0, length + 10));

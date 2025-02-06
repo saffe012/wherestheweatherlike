@@ -42,6 +42,7 @@ export const HandleClickGetDestinations = (
     return array;
   }
 
+  // shuffle list so that not always the same destinations are displayed first
   const shuffledList = shuffle(Object.keys(DestinationWeather));
   for (const destination of shuffledList) {
     if (month === DOESNT_MATTER) {
@@ -59,6 +60,7 @@ export const HandleClickGetDestinations = (
           months[monthfor] = DestinationWeather[destination].weather[monthfor];
         }
       }
+      // destiantion has at least one month that meets the criteria
       if (Object.keys(months).length > 0) {
         destinations[destination] = months;
       }

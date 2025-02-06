@@ -1,11 +1,11 @@
 interface CopyrightProps {
   show: boolean;
-  inBackgroundContainer: boolean;
+  inMainContainer: boolean;
 }
 
-const Copyright = ({ show, inBackgroundContainer }: CopyrightProps) => {
-  let divClassName = inBackgroundContainer ? "" : "form-group mt-4 content-div";
-  let pClassName = inBackgroundContainer ? "photo-font copyright" : "copyright";
+const Copyright = ({ show, inMainContainer }: CopyrightProps) => {
+  let divClassName = inMainContainer ? "" : "form-group mt-4 content-div";
+  let pClassName = inMainContainer ? "photo-font copyright" : "copyright";
   return (
     <>
       {show && (

@@ -15,11 +15,14 @@ function ListItem({ index, item, useMonth }: ListItemProps) {
   let tempsDisplay = [];
   let rainDisplay = [];
 
+  // prep data for display
   for (const month of Object.keys(item.data)) {
     months.push({
       month: month,
       data: item.data[month],
     });
+    /// Display the first one or two letters of the month name
+    // two if there are multiple months that start with the same letter
     if (
       month === "May" ||
       month === "July" ||

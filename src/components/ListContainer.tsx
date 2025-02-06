@@ -8,6 +8,7 @@ const ListContainer = () => {
   const appDestinationsList = useContext(AppContext).appDestinationsList;
   return (
     <>
+      {/** only dispaly content if there are results in list */}
       {appDestinationsList.length > 0 && (
         <div className="p-card-text">
           <div className="form-group">
@@ -15,7 +16,7 @@ const ListContainer = () => {
               <ListGroup destinationsList={appDestinationsList} />
             </div>
           </div>
-          <Copyright show={count > 0} inBackgroundContainer={false} />
+          <Copyright show={count > 0} inMainContainer={false} />
         </div>
       )}
     </>

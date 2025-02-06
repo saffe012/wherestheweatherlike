@@ -35,6 +35,7 @@ function WeatherOption({
         >
           {item}
         </Dropdown.Item>,
+        // Add a divider after Doesn't Matter item before months
         index === 0 && <Dropdown.Divider key={`divider-${index}`} />,
       ])}
     </DropdownButton>

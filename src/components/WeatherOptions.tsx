@@ -54,10 +54,14 @@ function WeatherOptions() {
 
   const [rainOk] = useState(DOESNT_MATTER);
   const rainOks = [DOESNT_MATTER, LESS_RAIN, SOME_RAIN_IS_OK];
+
+  // modify margin of top dropdown based on screen size
   let mtClass = window.innerWidth > 500 ? "mt-4" : "mt-1";
+
   return (
     <>
       <div className="row h-100 justify-content-center align-items-center">
+        {/* Month */}
         <div className={"form-group " + mtClass}>
           <h4>
             <span className="label label-default photo-font option-choice">
@@ -72,6 +76,7 @@ function WeatherOptions() {
             classname="month-dropdown"
           />
         </div>
+        {/* Rain Amount */}
         <div className="form-group mt-4">
           <h4>
             <span className="label label-default photo-font option-choice">
@@ -87,6 +92,7 @@ function WeatherOptions() {
           />
         </div>
       </div>
+      {/* Temperature Range */}
       <div className="form-group mt-4 text-center">
         <h4 className="avg-ht-label">
           <span className="label label-default photo-font option-choice">
